@@ -68,6 +68,8 @@ button:focus-visible {
 }
 
 
-/* Tailwind import removed: Tailwind is not configured in this project.
-  If you want Tailwind utilities, install and configure tailwindcss and
-  re-add the appropriate @tailwind directives. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind directives added so utility classes are available. */
