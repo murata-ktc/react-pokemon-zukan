@@ -68,7 +68,6 @@ button:focus-visible {
 }
 
 
-@import "tailwindcss";
-
-/* Removed @theme block (not standard CSS). If you intended to use a design token system,
-   consider adding custom properties under :root or using a preprocessor. */
+/* Tailwind import removed: Tailwind is not configured in this project.
+  If you want Tailwind utilities, install and configure tailwindcss and
+  re-add the appropriate @tailwind directives. */
