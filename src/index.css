@@ -1,5 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* src/index.css */
+@import "tailwindcss";
 
-/* Tailwind directives added so utility classes are available. */
+@theme {
+  --font-family-sans: "Noto Sans JP", "sans-serif";
+  --color-brand: #ffcb05;
+  --color-brand-dark: #b98c00;
+}
