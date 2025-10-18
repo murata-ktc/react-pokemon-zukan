@@ -1,8 +1,8 @@
+// src/pages/PokemonDetail.tsx
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { fetchPokemonDetail } from '../api/pokemonDetailImpl';
-import type { PokemonDetailData } from '../api/pokemonDetailImpl';
+import { fetchPokemonDetail } from '../api/pokemonDetail';
 import PokemonTypeLabel from '../components/PokemonTypeLabel';
 import { apiQueryKeys } from '../queryKeys';
 import Skeleton from 'react-loading-skeleton';
@@ -11,7 +11,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 const PokemonDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading, error } = useQuery<PokemonDetailData, Error>({
+  const { data, isLoading, error } = useQuery({
     queryKey: [apiQueryKeys.pokemon.detail(Number(id))],
     queryFn: () => fetchPokemonDetail(Number(id)),
     enabled: !!id,
@@ -33,20 +33,20 @@ const PokemonDetail: React.FC = () => {
         <h1 className="mt-4 text-2xl font-bold">{data.japaneseName} (#{data.id})</h1>
         <p className="mt-2 text-justify">{data.description}</p>
         <div className="grid grid-cols-2 gap-2">
-          {data?.types?.map((type: string) => (
+          {data?.types?.map((type) => (
             <PokemonTypeLabel key={type} type={type} />
           ))}
         </div>
           <span className="w-fit whitespace-nowrap text-right">特性</span>
         <div className="flex gap-2">
           <div className="grid grid-cols-2 gap-2 w-full">
-            {data?.abilities?.map((ability: string) => (
+            {data?.abilities?.map((ability) => (
               <span key={ability}>{ability}</span>
             ))}
           </div>
         </div>
         <div className="mt-4 grid grid-cols-1 gap-x-2 w-full">
-          {data?.baseStats?.map((stat: { name: string; value: number }) => (
+          {data?.baseStats?.map((stat) => (
             <div key={stat.name} className="flex items-center">
               <span className="w-24 text-right mr-2">{stat.name}</span>
               <div className="flex-1 bg-gray-200 rounded-full h-4">
@@ -64,10 +64,10 @@ const PokemonDetail: React.FC = () => {
             <div className="flex-1 bg-gray-200 rounded-full h-4">
               <div
                 className="bg-blue-600 rounded-full h-4"
-                style={{ width: `${(data?.baseStats?.reduce((sum: number, stat: { name: string; value: number }) => sum + stat.value, 0) / 780) * 100}%` }}
+                style={{ width: `${(data?.baseStats?.reduce((sum, stat) => sum + stat.value, 0) / 780) * 100}%` }}
               ></div>
             </div>
-            <span className="ml-2 w-8">{data?.baseStats?.reduce((sum: number, stat: { name: string; value: number }) => sum + stat.value, 0)}</span>
+            <span className="ml-2 w-8">{data?.baseStats?.reduce((sum, stat) => sum + stat.value, 0)}</span>
           </div>
         </div>
       </div>
@@ -118,3 +118,4 @@ const PokemonDetailSkeleton: React.FC = () => {
 };
 
 export default PokemonDetail;
+

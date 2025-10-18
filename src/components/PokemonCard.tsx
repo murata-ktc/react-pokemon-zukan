@@ -1,3 +1,4 @@
+// src/components/PokemonCard.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -28,3 +29,4 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
 };
 
 export default PokemonCard;
+
