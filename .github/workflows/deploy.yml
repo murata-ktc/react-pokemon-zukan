@@ -32,19 +32,19 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          PUBLIC_URL: /react-pokemon-zukan
+          PUBLIC_URL: /react-pokemon-zukan  # CRA なら有効。Vite なら vite.config.ts の base で設定
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'  # vite なら dist、CRA なら build に変更
+          path: ./dist  # CRA の場合は ./build に変更
 
   deploy:
+    runs-on: ubuntu-latest
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v4
