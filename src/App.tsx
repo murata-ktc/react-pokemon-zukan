@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <Header />
       <Navigation />
       <main className="flex-grow">
-        <Routes>
+        <Routes >
           <Route path="/" element={<PokemonList />} />
           <Route path="/pokemon/:id" element={<PokemonDetail />} />
         </Routes>
