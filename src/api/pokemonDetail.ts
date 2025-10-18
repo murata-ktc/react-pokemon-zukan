@@ -3,7 +3,6 @@ import type {
   PokemonAbility, PokemonStat, PokemonType,
   Name, FlavorTextEntry
 } from './common.type';
-import type { Name, FlavorTextEntry } from './common.type';
 
 type PokemonDetail = {
   id: number;
