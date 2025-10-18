@@ -1,5 +1,5 @@
 // src/api/pokemonDetail.ts
-import { FlavorTextEntry, PokemonAbility, PokemonStat, PokemonType } from './pokemon.type';
+import { FlavorTextEntry, PokemonAbility, PokemonStat } from './pokemon.type.ts';
 import { Name } from './common.type';
 
 type PokemonDetail = {
@@ -33,7 +33,7 @@ export const fetchPokemonDetail = async (id: number): Promise<PokemonDetail> => 
 
   // タイプの日本語名を取得
   const types = await Promise.all(
-    data.types.map(async (typeInfo: PokemonType) => {
+    data.types.map(async (typeInfo: any) => {
       const typeResponse = await fetch(typeInfo.type.url);
       const typeData = await typeResponse.json();
       const japaneseType = typeData.names.find((name: Name) => name.language.name === 'ja');

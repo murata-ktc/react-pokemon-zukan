@@ -1,5 +1,5 @@
 import { INITIAL_POKEMON_LIST_LIMIT } from '../config';
-import { fetchPokemonList, type PokemonListResult } from './pokemon';
+import { fetchPokemonList, type PokemonListResult } from './pokemon.type';
 import type { Pokemon } from './common.type';
 import { fetchPokemonJapaneseName } from './pokemonSpecies';
 
