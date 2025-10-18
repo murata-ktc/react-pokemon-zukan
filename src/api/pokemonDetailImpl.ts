@@ -35,7 +35,19 @@ export const fetchPokemonDetail = async (id: number): Promise<PokemonDetailData>
     image: data.sprites?.other?.['official-artwork']?.front_default || data.sprites?.front_default || '',
     description,
     types: data.types?.map((t: any) => t.type.name) || [],
-    abilities: data.abilities?.map((a: any) => a.ability.name) || [],
+    abilities: await Promise.all(
+      (data.abilities?.map((a: any) => a.ability.name) || []).map(async (abilityName: string) => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/ability/${abilityName}`);
+          if (!res.ok) return abilityName;
+          const abilityData = await res.json();
+          const ja = abilityData.names?.find((n: any) => n.language?.name === 'ja');
+          return ja ? ja.name : abilityName;
+        } catch (e) {
+          return abilityName;
+        }
+      })
+    ),
     baseStats: data.stats?.map((s: any) => ({ name: s.stat.name, value: s.base_stat })) || [],
   };
 
