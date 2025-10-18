@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../config.ts';
+import { API_BASE_URL } from '../config';
 
 export interface PokemonListResult {
   count: number;
@@ -18,3 +18,8 @@ export const fetchPokemonList = async (offset: number = 20, limit: number = 20):
   const data = await response.json();
   return data;
 };
+
+export type {
+  PokemonAbility, PokemonStat, PokemonType,
+  FlavorTextEntry, Name, Pokemon, PokemonSprites
+} from './common.type';
